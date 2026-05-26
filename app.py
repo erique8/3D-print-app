@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import os
+from datetime import datetime
 
 st.set_page_config(
     page_title="3D打印新手指南",
@@ -162,6 +163,34 @@ def filter_filaments(filaments, keyword):
     ]
 
 
+# 反馈文件的固定路径
+FEEDBACK_PATH = "data/feedback.json"
+
+
+def save_feedback(item_name, item_type, rating, comment):
+    """把一条反馈追加写入 feedback.json，文件不存在时自动创建"""
+    # 文件存在就读取，否则初始化空结构
+    if os.path.exists(FEEDBACK_PATH):
+        with open(FEEDBACK_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    else:
+        data = {"feedbacks": []}
+
+    # 构造这条记录
+    record = {
+        "term_name":  item_name,
+        "term_type":  item_type,          # "term" 或 "filament"
+        "rating":     rating,
+        "comment":    comment,
+        "timestamp":  datetime.now().isoformat()
+    }
+    data["feedbacks"].append(record)
+
+    # 写回文件（ensure_ascii=False 保证中文正常保存）
+    with open(FEEDBACK_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
 # ── Session State ──────────────────────────────────────────
 
 def init_state():
@@ -298,6 +327,43 @@ def render_home(terms_data, filaments_data):
 
 # ── 详情页 ─────────────────────────────────────────────────
 
+def render_feedback(item_name, item_type):
+    """在详情页底部渲染折叠式反馈区，词条和耗材页都可复用"""
+    # session_state key：记录这个词条是否刚刚提交过反馈
+    submitted_key = f"fb_submitted_{item_type}_{item_name}"
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    with st.expander("💬 这个解释清楚吗？给我们提建议"):
+
+        # 如果刚提交过，显示感谢提示，然后把标志清掉
+        if st.session_state.get(submitted_key):
+            st.success("✓ 感谢你的反馈！这会让 app 变得更好")
+            st.session_state[submitted_key] = False
+
+        # 评分选项，水平排列
+        rating = st.radio(
+            "你觉得这个解释：",
+            options=["很清楚", "一般", "看不懂"],
+            horizontal=True,
+            key=f"fb_radio_{item_type}_{item_name}"
+        )
+
+        # 文字输入框
+        comment = st.text_area(
+            "补充说明",
+            placeholder="哪里看不懂？你觉得应该补充什么？",
+            label_visibility="collapsed",
+            key=f"fb_text_{item_type}_{item_name}"
+        )
+
+        # 提交按钮
+        if st.button("提交反馈", key=f"fb_btn_{item_type}_{item_name}"):
+            save_feedback(item_name, item_type, rating, comment)
+            # 设置提交标志，rerun 后会在顶部显示感谢提示
+            st.session_state[submitted_key] = True
+            st.rerun()
+
+
 def render_back_button():
     """渲染返回按钮，点击后回到首页"""
     if st.button("← 返回首页"):
@@ -325,6 +391,9 @@ def render_term_detail(term):
         )
     with col_img:
         show_image(term["image"])
+
+    # 页底反馈区
+    render_feedback(term["term_cn"], "term")
 
 
 def render_filament_detail(filament):
@@ -377,6 +446,9 @@ def render_filament_detail(filament):
 
     with col_img:
         show_image(filament["image"])
+
+    # 页底反馈区
+    render_feedback(filament["name"], "filament")
 
 
 # ── 主程序入口 ─────────────────────────────────────────────
