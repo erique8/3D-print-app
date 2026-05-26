@@ -1,0 +1,149 @@
+[
+  {
+    "id": "layer_height",
+    "term_cn": "层高",
+    "term_en": "Layer Height",
+    "plain_explanation": "3D打印机每次叠加一层耗材的厚度，单位是毫米。层高越小，打印越精细，但耗时越长；层高越大，速度快但表面有明显的「台阶感」纹路。就像切黄瓜，切越薄叠起来越平整，切越厚省时间但粗糙。常见值：0.1mm（精细）、0.2mm（标准）、0.3mm（粗糙但快）。",
+    "image": "images/terms/layer_height.png"
+  },
+  {
+    "id": "infill",
+    "term_cn": "填充率",
+    "term_en": "Infill",
+    "plain_explanation": "模型内部的实心程度，用百分比表示。0% 就是完全空心，100% 是完全实心。大多数情况下内部不需要全实心，切片软件会自动生成蜂窝状的内部格子来节省材料。装饰摆件用 10%~20% 就够，需要承力的零件用 50% 以上。填充率越高越结实，但越费料费时。",
+    "image": "images/terms/infill.png"
+  },
+  {
+    "id": "support",
+    "term_cn": "支撑",
+    "term_en": "Support",
+    "plain_explanation": "打印悬空部分时自动生成的临时辅助结构，打印完成后需要手动拆掉。就像盖楼时搭的脚手架——没有支撑，悬空的部分会因为没有东西「托着」直接往下塌。拆支撑有时候需要一点耐心，可以用尖嘴钳辅助。悬空角度超过45°一般就需要加支撑了。",
+    "image": "images/terms/support.png"
+  },
+  {
+    "id": "nozzle",
+    "term_cn": "喷嘴",
+    "term_en": "Nozzle",
+    "plain_explanation": "打印机的出料口，一个圆锥形金属小嘴，耗材在这里被加热融化后挤出。默认直径 0.4mm，越细打印越精细但越慢，越粗速度越快但细节越少。就像圆珠笔笔尖——细笔尖写得精细，粗笔尖写得快。喷嘴是消耗品，打含研磨颗粒的耗材（如碳纤维 PLA）必须换硬化钢喷嘴，否则会被迅速磨损。",
+    "image": "images/terms/nozzle.png"
+  },
+  {
+    "id": "print_speed",
+    "term_cn": "打印速度",
+    "term_en": "Print Speed",
+    "plain_explanation": "打印头每秒移动的毫米数（mm/s）。速度快省时间，但层间粘合变差、容易出质量问题；速度慢质量好，但等待时间长。就像手写字——赶时间写潦草，慢慢写才工整。新手建议从 40~60mm/s 开始，熟悉之后再逐步提高。",
+    "image": "images/terms/print_speed.png"
+  },
+  {
+    "id": "retraction",
+    "term_cn": "回抽",
+    "term_en": "Retraction",
+    "plain_explanation": "打印头在两个区域之间移动时，把耗材往回抽一小段距离，防止喷嘴漏料在空中拉出细丝。就像喝果汁抬起吸管前先把嘴合上——不做这个动作就会有液体滴落。回抽距离和速度是导致「拉丝」问题的关键参数，设置不当模型表面就会布满细蜘蛛网。",
+    "image": "images/terms/retraction.png"
+  },
+  {
+    "id": "line_width",
+    "term_cn": "走线宽度",
+    "term_en": "Line Width",
+    "plain_explanation": "打印时每条挤出线的宽度，通常等于或略大于喷嘴直径（默认约 0.4mm）。线越细，表面细节越丰富但打印更慢；线越宽，速度快、层间粘合更好但细节减少。大多数时候不需要手动调，切片软件会自动根据喷嘴大小计算出合适的值。",
+    "image": "images/terms/line_width.png"
+  },
+  {
+    "id": "top_bottom_layer",
+    "term_cn": "顶层/底层厚度",
+    "term_en": "Top/Bottom Layer",
+    "plain_explanation": "模型顶面和底面实心打印的厚度。内部可以是蜂窝状空心，但顶部和底部必须是完整实心的几层，否则表面会出现小孔甚至塌陷。就像千层酥——中间可以是分层的酥皮，但最顶层和最底层必须是完整不透风的一片。通常设 3~5 层即可，约 0.6~1mm。",
+    "image": "images/terms/top_bottom_layer.png"
+  },
+  {
+    "id": "warping",
+    "term_cn": "翘边",
+    "term_en": "Warping",
+    "plain_explanation": "打印件的底部边角往上翘起、脱离打印平台，严重时整个模型会在打印途中飞走。原因是耗材冷却收缩，边角处受力最集中。就像热饼干放凉后边缘卷曲。ABS 和 ASA 最容易翘边。解决办法：开热床、涂固体胶、关冷却风扇、在底部加裙边或筏板。",
+    "image": "images/terms/warping.png"
+  },
+  {
+    "id": "stringing",
+    "term_cn": "拉丝",
+    "term_en": "Stringing",
+    "plain_explanation": "打印头在两个实体之间移动时，从喷嘴漏出的少量耗材在空中冷却成细丝，像蜘蛛网粘在模型表面。主要原因是回抽参数设置不对、打印温度过高，或耗材受潮。解决思路：降低温度 5°C、加大回抽距离、烘干耗材。",
+    "image": "images/terms/stringing.png"
+  },
+  {
+    "id": "layer_shift",
+    "term_cn": "断层",
+    "term_en": "Layer Shift",
+    "plain_explanation": "打印到某一高度时，上面的层突然整体错位偏移，模型看起来像被人推了一下。常见原因：打印速度过快导致步进电机丢步、皮带过松、打印途中模型被碰撞。断层通常意味着这次打印报废了。预防比补救更重要：降低速度、检查皮带松紧、保持打印环境安静。",
+    "image": "images/terms/layer_shift.png"
+  },
+  {
+    "id": "clogging",
+    "term_cn": "堵头",
+    "term_en": "Clogging",
+    "plain_explanation": "耗材堵在喷嘴里出不来，打印机继续运动但没有料挤出，模型出现缺口甚至只打了个空壳。就像圆珠笔断水。常见原因：温度不够、耗材受潮变脆、换料时残料没清干净。处理方法：冷拔（加热到软化温度后快速拔出残料）或用细针从喷嘴口疏通。",
+    "image": "images/terms/clogging.png"
+  },
+  {
+    "id": "bed_adhesion",
+    "term_cn": "粘床",
+    "term_en": "Bed Adhesion",
+    "plain_explanation": "打印件第一层能稳稳贴住打印平台的能力。粘得太差，打印途中模型飞走；粘得太紧，打完拆不下来。调好喷嘴高度（俗称「调平」）是最关键的一步，要像刮刀抹奶油一样，贴着平台但不压实。辅助手段：涂固体胶棒、使用磁吸涂层钢板、开热床。",
+    "image": "images/terms/bed_adhesion.png"
+  },
+  {
+    "id": "brim_skirt",
+    "term_cn": "裙边",
+    "term_en": "Brim / Skirt",
+    "plain_explanation": "在模型底部外围额外打几圈薄层线，用来增加第一层与打印台的接触面积，防止翘边，同时让喷嘴预热出料稳定。打印完成后用手或工具掰掉即可。比筏板省料、省时，是最常用的防翘边辅助结构。就像给模型穿了一条小裙子，打完脱掉。",
+    "image": "images/terms/brim_skirt.png"
+  },
+  {
+    "id": "raft",
+    "term_cn": "筏板",
+    "term_en": "Raft",
+    "plain_explanation": "在整个模型底部生成一层厚实的「垫层」，模型打在垫层上面，有点像在桌上铺张垫子再放东西。防翘边能力比裙边强，但耗料多、时间长，拆掉后底面也不太平整。适合高难度大型模型，或 ABS、ASA 等极易翘边的耗材。",
+    "image": "images/terms/raft.png"
+  },
+  {
+    "id": "bridging",
+    "term_cn": "桥接",
+    "term_en": "Bridging",
+    "plain_explanation": "在两个支撑点之间横跨打印一段悬空结构，就像建桥从两头向中间延伸。打印机靠冷却风扇让耗材在空中迅速凝固。短距离桥接（通常 20~40mm 以内）一般不需要支撑；距离太长就会往下垂，必须加支撑。冷却能力越强的机器，桥接效果越好。",
+    "image": "images/terms/bridging.png"
+  },
+  {
+    "id": "overhang",
+    "term_cn": "悬空",
+    "term_en": "Overhang",
+    "plain_explanation": "上层结构伸出超过下层支撑范围的部分，就像悬挑的阳台。角度越大越难打。经验法则：小于 45° 基本可以自撑，超过 60° 开始需要支撑，超过 70~80° 必须加支撑，否则打出来像熔化的冰淇淋。摆放模型时尽量让悬空面最小的方向朝上，能减少支撑用量。",
+    "image": "images/terms/overhang.png"
+  },
+  {
+    "id": "slicer",
+    "term_cn": "切片软件",
+    "term_en": "Slicer",
+    "plain_explanation": "把三维模型文件（.stl、.3mf 等格式）切成一层层的打印路径，并生成打印机能执行的 G-code 指令文件的软件。就像把一个立体蛋糕用刀一层层切开，再告诉打印机每层怎么画。整个流程是：三维模型→切片软件→G-code→打印机。常用的有 Bambu Studio（拓竹机器）、Cura（开源免费）、PrusaSlicer。",
+    "image": "images/terms/slicer.png"
+  },
+  {
+    "id": "heated_bed",
+    "term_cn": "热床",
+    "term_en": "Heated Bed",
+    "plain_explanation": "打印平台下方的加热模块，能把打印台加热到 60~110°C，让耗材底层缓慢冷却，大幅减少翘边。打 PLA 一般设 60°C，打 ABS 需要 100~110°C。没有热床的打印机打 ABS 几乎必翘边；打 PLA 也建议开热床，第一层粘得更稳。",
+    "image": "images/terms/heated_bed.png"
+  },
+  {
+    "id": "ams",
+    "term_cn": "AMS（自动换料系统）",
+    "term_en": "AMS – Automatic Material System",
+    "plain_explanation": "拓竹（Bambu Lab）打印机的多色耗材自动切换装置，可同时装 4 卷耗材，打印机按指令自动切换颜色或材料，无需手动换料。类似于喷墨打印机的多色墨盒，只是换成了线圈耗材。其他品牌也有类似的多色系统，但「AMS」是拓竹的专有名称。",
+    "image": "images/terms/ams.png"
+  },
+  {
+    "id": "gcode",
+    "term_cn": "G-code",
+    "term_en": "G-code",
+    "plain_explanation": "打印机实际执行的指令文件，由切片软件自动生成。每一行是一条命令，例如 G1 X50 Y30 E0.5 F3000 的意思是「以每分钟 3000mm 的速度移动到坐标(50,30)并挤出耗材」。你不需要读懂每一行，但了解「模型文件→切片软件→G-code→打印机」这条流程，能帮助你理解整个打印过程。",
+    "image": "images/terms/gcode.png"
+  }
+]
